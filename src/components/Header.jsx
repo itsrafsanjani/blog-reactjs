@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { HiMinus, HiPlus } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
+import { actions } from '../store/index'
 
 const Header = () => {
   const counter = useSelector((state) => state.counter)
@@ -8,16 +9,16 @@ const Header = () => {
   const dispatch = useDispatch()
 
   const increment = () => {
-    dispatch({ type: 'INCREMENT' })
+    dispatch(actions.increment())
   }
   const decrement = () => {
-    dispatch({ type: 'DECREMENT' })
+    dispatch(actions.decrement())
   }
 
   const [addBy, setAddBy] = useState(0)
 
   const incrementBy = () => {
-    dispatch({ type: 'INCREMENT_BY', payload: addBy })
+    dispatch(actions.incrementBy(addBy))
   }
 
   const updateAdBy = (e) => {
