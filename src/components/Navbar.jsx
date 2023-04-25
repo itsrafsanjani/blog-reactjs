@@ -1,13 +1,7 @@
-import React, { useContext } from 'react'
-import {
-  HiChat,
-  HiChatAlt,
-  HiOutlineChat,
-  HiOutlineChatAlt,
-  HiOutlineMenu,
-} from 'react-icons/hi'
-import Dropdown from './Dropdown'
+import React from 'react'
+import { HiOutlineChatAlt, HiOutlineMenu } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
+import Dropdown from './Dropdown'
 
 const Navbar = () => {
   const [user] = [true]
