@@ -41,7 +41,6 @@ function Login() {
     axios
       .post('/login', form)
       .then((data) => {
-        console.log(data.data.data)
         dispatch(authActions.login(data.data.data))
 
         navigate('/dashboard')
