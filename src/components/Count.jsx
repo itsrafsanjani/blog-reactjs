@@ -3,7 +3,7 @@ import { HiMinus, HiPlus } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
 import { counterActions } from '../store/counterSlice'
 
-const Header = () => {
+const Count = () => {
   const count = useSelector((state) => state.counter.count)
 
   const dispatch = useDispatch()
@@ -26,7 +26,7 @@ const Header = () => {
   }
 
   return (
-    <div className='flex py-2'>
+    <div className='md:flex py-2 items-center'>
       <div className='flex pr-2'>
         <h1 className='p-2'>Count: </h1>
         <h1 className='p-2'>{count}</h1>
@@ -44,14 +44,14 @@ const Header = () => {
         </button>
       </div>
 
-      <div className='flex border-l-4 border-red-300 pl-2'>
+      <div className='md:flex w-full md:border-l-4 border-red-300 p-2'>
         <input
-          className='p-2'
+          className='p-2 block w-full'
           type='text'
           onChange={(e) => updateAdBy(e)}
           value={addBy}
         />
-        <button className='p-2' onClick={incrementBy}>
+        <button className='p-2 w-full bg-gray-300 mt-2 md:mt-0' onClick={incrementBy}>
           Add by {addBy}
         </button>
       </div>
@@ -59,4 +59,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Count

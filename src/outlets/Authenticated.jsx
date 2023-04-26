@@ -1,9 +1,8 @@
-import { useContext, useEffect } from 'react'
-import { useState } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
-import Navbar from '../components/Navbar'
-import Header from '../components/Header'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { Outlet, useNavigate } from 'react-router-dom'
+import Count from '../components/Count'
+import Navbar from '../components/Navbar'
 
 function Authenticated() {
   let navigate = useNavigate()
@@ -20,10 +19,10 @@ function Authenticated() {
 
   return (
     <div className='bg-gray-200 md:flex flex-col items-center justify-center h-screen w-screen'>
-      <Header />
+      <Count />
       <div className='bg-gray-100 md:flex w-full h-full lg:max-h-[95vh] lg:max-w-[95vw] shadow'>
         <div className='w-full md:w-4/12 md:flex flex-col'>
-          <div className='sticky top-0 shadow-sm'>
+          <div className='sticky top-0 shadow-sm z-10'>
             <Navbar />
           </div>
         </div>

@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react'
 import { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
-import Header from '../components/Header'
+import Header from '../components/Count'
 import { useSelector } from 'react-redux'
 
 function Guest() {
