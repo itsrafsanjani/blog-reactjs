@@ -1,5 +1,5 @@
+import BloggingIcon from '@/components/icons/BloggingIcon'
 import React from 'react'
-import BloggingIcon from '../../components/icons/BloggingIcon'
 import { useSelector } from 'react-redux'
 
 function Index() {

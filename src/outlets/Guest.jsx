@@ -1,9 +1,6 @@
-import { useContext, useEffect } from 'react'
-import { useState } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
-import Navbar from '../components/Navbar'
-import Header from '../components/Count'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 function Guest() {
   let navigate = useNavigate()

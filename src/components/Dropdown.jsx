@@ -1,9 +1,9 @@
-import { Fragment, useContext } from 'react'
+import { authActions } from '@/store/authSlice'
 import { Menu, Transition } from '@headlessui/react'
-import { Link, useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { Fragment } from 'react'
 import { useDispatch } from 'react-redux'
-import { authActions } from '../store/authSlice'
+import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')

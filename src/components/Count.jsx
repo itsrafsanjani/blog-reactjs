@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { HiMinus, HiPlus } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
-import { counterActions } from '../store/counterSlice'
+import { counterActions } from '@/store/counterSlice'
 
 const Count = () => {
   const count = useSelector((state) => state.counter.count)

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import Loading from '../components/Loading'
+import Loading from '@/components/Loading'
 
 function Register() {
   const [loading, setLoading] = useState(false)

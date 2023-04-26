@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Outlet, useNavigate } from 'react-router-dom'
-import Count from '../components/Count'
-import Navbar from '../components/Navbar'
+import Count from '@/components/Count'
+import Navbar from '@/components/Navbar'
 
 function Authenticated() {
   let navigate = useNavigate()

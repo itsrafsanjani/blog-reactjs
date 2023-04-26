@@ -1,7 +1,7 @@
 import React from 'react'
 import { HiOutlineChatAlt, HiOutlineMenu } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
-import Dropdown from './Dropdown'
+import Dropdown from '@/components/Dropdown'
 
 const Navbar = () => {
   const [user] = [true]

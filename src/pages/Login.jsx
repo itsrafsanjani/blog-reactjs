@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Loading from '../components/Loading'
 
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import { authActions } from '../store/authSlice'
+import { authActions } from '@/store/authSlice'
+import Loading from '@/components/Loading'
 
 function Login() {
   const [loading, setLoading] = useState(false)
