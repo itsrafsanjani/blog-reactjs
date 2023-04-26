@@ -2,14 +2,19 @@ import { Fragment, useContext } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+import { authActions } from '../store/authSlice'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Dropdown({ children }) {
+  const dispatch = useDispatch()
+  
   const handleLogout = async () => {
-    toast.success('Logout successful')
+    dispatch(authActions.logout())
+    toast.success('Logout success.')
   }
   return (
     <Menu as='div' className='relative inline-block'>

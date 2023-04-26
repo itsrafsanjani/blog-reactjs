@@ -3,27 +3,20 @@ import { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Header from '../components/Header'
+import { useSelector } from 'react-redux'
 
 function Authenticated() {
   let navigate = useNavigate()
 
-  const [auth] = [true]
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 
   useEffect(() => {
-    if (!auth) {
+    if (!isLoggedIn) {
       navigate('/login')
     } else {
-      isAuthAvailable()
+      navigate('/dashboard')
     }
-  }, [auth])
-
-  const isAuthAvailable = async () => {
-    if (!auth) {
-      console.log('Unauthenticated ⛔')
-    } else {
-      console.log('Authenticated 🎉')
-    }
-  }
+  }, [isLoggedIn])
 
   return (
     <div className='bg-gray-200 md:flex flex-col items-center justify-center h-screen w-screen'>
@@ -35,7 +28,7 @@ function Authenticated() {
           </div>
         </div>
         <div className='w-full md:w-8/12 md:flex flex-col justify-between items-center bg-gray-100 border-l relative max-h-screen'>
-          <Outlet context={[auth]} />
+          <Outlet />
         </div>
       </div>
     </div>

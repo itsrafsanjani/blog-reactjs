@@ -1,23 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Loading from '../components/Loading'
-import { Link, useNavigate } from 'react-router-dom'
 
 import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+import { authActions } from '../store/authSlice'
 
 function Login() {
   const [loading, setLoading] = useState(false)
-
-  const navigate = useNavigate()
-
-  const [auth, setAuth] = [true, null]
-
-  useEffect(() => {
-    if (!auth) {
-      navigate('/login')
-    } else {
-      navigate('/dashboard')
-    }
-  }, [auth])
 
   const [error, setError] = useState('')
 
@@ -30,6 +20,8 @@ function Login() {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
+  const dispatch = useDispatch()
+
   const handleSubmit = async (e) => {
     setLoading(true)
     e.preventDefault()
@@ -37,10 +29,11 @@ function Login() {
     toast.info('Logging in...')
 
     setTimeout(() => {
-      toast.success('Login success')
-    }, 1000)
+      dispatch(authActions.login())
+      toast.success('Login success.')
 
-    setLoading(false)
+      setLoading(false)
+    }, 1000)
   }
 
   return (

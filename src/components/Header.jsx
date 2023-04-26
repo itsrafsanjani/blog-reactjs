@@ -1,24 +1,24 @@
 import { useState } from 'react'
 import { HiMinus, HiPlus } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
-import { actions } from '../store/index'
+import { counterActions } from '../store/counterSlice'
 
 const Header = () => {
-  const counter = useSelector((state) => state.counter)
+  const count = useSelector((state) => state.counter.count)
 
   const dispatch = useDispatch()
 
   const increment = () => {
-    dispatch(actions.increment())
+    dispatch(counterActions.increment())
   }
   const decrement = () => {
-    dispatch(actions.decrement())
+    dispatch(counterActions.decrement())
   }
 
   const [addBy, setAddBy] = useState(0)
 
   const incrementBy = () => {
-    dispatch(actions.incrementBy(addBy))
+    dispatch(counterActions.incrementBy(addBy))
   }
 
   const updateAdBy = (e) => {
@@ -28,8 +28,8 @@ const Header = () => {
   return (
     <div className='flex py-2'>
       <div className='flex pr-2'>
-        <h1 className='p-2'>Counter: </h1>
-        <h1 className='p-2'>{counter}</h1>
+        <h1 className='p-2'>Count: </h1>
+        <h1 className='p-2'>{count}</h1>
         <button
           className='inline-flex w-full justify-center focus:outline-none focus:bg-slate-100 rounded-full p-2 '
           onClick={increment}

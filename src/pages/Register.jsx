@@ -1,22 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Loading from '../components/Loading'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import Loading from '../components/Loading'
 
 function Register() {
   const [loading, setLoading] = useState(false)
-
-  const navigate = useNavigate()
-
-  const { auth } = [null]
-
-  useEffect(() => {
-    if (!auth) {
-      navigate('/register')
-    } else {
-      navigate('/dashboard')
-    }
-  }, [auth])
 
   const [error, setError] = useState('')
 
@@ -36,10 +24,10 @@ function Register() {
     toast.info('Registering...')
 
     setTimeout(() => {
-      toast.success('Register success')
-    }, 1000)
+      toast.success('Register success.')
 
-    setLoading(false)
+      setLoading(false)
+    }, 1000)
   }
 
   return (

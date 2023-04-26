@@ -3,7 +3,7 @@ import BloggingIcon from '../../components/icons/BloggingIcon'
 import { useSelector } from 'react-redux'
 
 function Index() {
-  const counter = useSelector((state) => state.counter)
+  const count = useSelector((state) => state.counter.count)
   
   return (
     <div className='h-full flex flex-col justify-center items-center'>
@@ -12,7 +12,7 @@ function Index() {
         <h1 className='text-2xl'>Blog ReactJS</h1>
         <h3 className='text-sm'>An awesome Blog!</h3>
         <h3 className='text-sm'>
-          <span>Counter:</span> <span>{counter}</span>
+          <span>Count:</span> <span>{count}</span>
         </h3>
       </div>
     </div>
