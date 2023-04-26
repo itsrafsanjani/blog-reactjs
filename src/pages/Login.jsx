@@ -1,12 +1,24 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
-import { toast } from 'react-toastify'
-import { useDispatch } from 'react-redux'
-import { authActions } from '@/store/authSlice'
 import Loading from '@/components/Loading'
+import { authActions } from '@/store/authSlice'
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
 
 function Login() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/dashboard')
+    } else {
+      navigate('/login')
+    }
+  }, [isLoggedIn])
+
   const [loading, setLoading] = useState(false)
 
   const [error, setError] = useState('')
@@ -26,14 +38,28 @@ function Login() {
     setLoading(true)
     e.preventDefault()
 
-    toast.info('Logging in...')
+    axios
+      .post('/login', form)
+      .then((data) => {
+        console.log(data.data.data)
+        dispatch(authActions.login(data.data.data))
 
-    setTimeout(() => {
-      dispatch(authActions.login())
-      toast.success('Login success.')
+        navigate('/dashboard')
+      })
+      .catch((err) => {
+        if (err.response) {
+          setError(err.response.data.message)
+        } else if (err.request) {
+          setError('Network error')
+        } else {
+          setError('An error occurred')
+        }
 
-      setLoading(false)
-    }, 1000)
+        throw new Error(err)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }
 
   return (

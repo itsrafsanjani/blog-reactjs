@@ -1,19 +1,19 @@
+import Count from '@/components/Count'
+import Navbar from '@/components/Navbar'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Outlet, useNavigate } from 'react-router-dom'
-import Count from '@/components/Count'
-import Navbar from '@/components/Navbar'
 
 function Authenticated() {
-  let navigate = useNavigate()
-
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 
+  const navigate = useNavigate()
+
   useEffect(() => {
-    if (!isLoggedIn) {
-      navigate('/login')
-    } else {
+    if (isLoggedIn) {
       navigate('/dashboard')
+    } else {
+      navigate('/login')
     }
   }, [isLoggedIn])
 

@@ -1,9 +1,22 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { toast } from 'react-toastify'
 import Loading from '@/components/Loading'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function Register() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/dashboard')
+    } else {
+      navigate('/login')
+    }
+  }, [isLoggedIn])
+
   const [loading, setLoading] = useState(false)
 
   const [error, setError] = useState('')
