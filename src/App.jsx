@@ -63,7 +63,7 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <div className='bg-gray-200 min-h-screen flex flex-col'>
+        <div className='min-h-screen flex flex-col'>
           <Navbar />
           <main className='flex-1 flex flex-col'>{routes}</main>
         </div>

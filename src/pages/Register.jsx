@@ -44,7 +44,7 @@ function Register() {
   return (
     <form
       onSubmit={handleSubmit}
-      className='bg-white w-full md:w-6/12 lg:w-4/12 xl:w-3/12 py-12 px-8 mx-auto flex flex-col items-center justify-center my-auto'
+      className='w-full md:w-6/12 lg:w-4/12 xl:w-3/12 py-12 px-8 mx-auto flex flex-col items-center justify-center my-auto shadow-2xl'
     >
       <h3 className='mb-3 text-2xl tracking-wide'>Blog ReactJS</h3>
       <h3 className='mb-3 text-2xl tracking-wide'>Register</h3>
