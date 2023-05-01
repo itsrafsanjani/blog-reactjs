@@ -1,14 +1,10 @@
 import Count from '@/components/Count'
 import BloggingIcon from '@/components/icons/BloggingIcon'
-import React from 'react'
-import { useSelector } from 'react-redux'
 
 function Index() {
-  const count = useSelector((state) => state.counter.count)
-  
   return (
     <div className='h-full flex flex-col justify-center items-center'>
-      <BloggingIcon alt='blogging img' className='w-full md:w-96' />
+      <BloggingIcon alt='blogging img' className='w-full md:w-96 px-8' />
       <div className='my-3 text-center text-gray-500 tracking-wide'>
         <h1 className='text-2xl'>Blog ReactJS</h1>
         <h3 className='text-sm'>An awesome Blog!</h3>

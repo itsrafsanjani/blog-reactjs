@@ -13,9 +13,7 @@ function Login() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate('/dashboard')
-    } else {
-      navigate('/login')
+      navigate('/')
     }
   }, [isLoggedIn])
 
@@ -43,7 +41,7 @@ function Login() {
       .then((data) => {
         dispatch(authActions.login(data.data.data))
 
-        navigate('/dashboard')
+        navigate('/')
       })
       .catch((err) => {
         if (err.response) {
@@ -64,7 +62,7 @@ function Login() {
   return (
     <form
       onSubmit={handleSubmit}
-      className='bg-white md:w-6/12 lg:w-4/12 xl:w-3/12 min-h-screen py-12 px-8 mx-auto flex flex-col items-center justify-center'
+      className='bg-white w-full md:w-6/12 lg:w-4/12 xl:w-3/12 py-12 px-8 mx-auto flex flex-col items-center justify-center my-auto'
     >
       <h3 className='mb-3 text-2xl tracking-wide'>Blog ReactJS</h3>
       <h3 className='mb-3 text-2xl tracking-wide'>Login</h3>

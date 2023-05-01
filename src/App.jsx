@@ -1,16 +1,16 @@
-import Authenticated from '@/layouts/Authenticated'
 import Register from '@/pages/Register'
-import Index from '@/pages/dashboard/Index'
 import store from '@/store'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Login from './pages/Login'
 import { authActions } from './store/authSlice'
+import Index from './pages/Index'
+import Navbar from './components/Navbar'
 
 function App() {
   const token = Cookies.get('token')
@@ -51,21 +51,24 @@ function App() {
     )
   }
 
+  const routes = (
+    <Routes>
+      <Route path={'/'} element={<Index />} exact />
+
+      <Route path={'/register'} element={<Register />} exact />
+      <Route path={'/login'} element={<Login />} exact />
+    </Routes>
+  )
+
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Routes>
-          <Route path={'/'} element={<Navigate to='/login' />} exact />
-
-          <Route path={'/register'} element={<Register />} exact />
-          <Route path={'/login'} element={<Login />} exact />
-
-          <Route element={<Authenticated />} exact>
-            <Route path={'/dashboard'} element={<Index />} exact />
-          </Route>
-        </Routes>
+        <div className='bg-gray-200 min-h-screen flex flex-col'>
+          <Navbar />
+          <main className='flex-1 flex flex-col'>{routes}</main>
+        </div>
+        <ToastContainer />
       </BrowserRouter>
-      <ToastContainer />
     </Provider>
   )
 }

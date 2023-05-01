@@ -11,7 +11,7 @@ function Authenticated() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate('/dashboard')
+      navigate('/')
     } else {
       navigate('/login')
     }
