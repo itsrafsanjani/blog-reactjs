@@ -12,6 +12,13 @@ import { authActions } from './store/authSlice'
 import Index from './pages/Index'
 import Navbar from './components/Navbar'
 
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
+
 function App() {
   const token = Cookies.get('token')
 
@@ -62,13 +69,15 @@ function App() {
 
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <div className='min-h-screen flex flex-col'>
-          <Navbar />
-          <main className='flex-1 flex flex-col'>{routes}</main>
-        </div>
-        <ToastContainer />
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <div className='min-h-screen flex flex-col'>
+            <Navbar />
+            <main className='flex-1 flex flex-col'>{routes}</main>
+          </div>
+          <ToastContainer />
+        </BrowserRouter>
+      </QueryClientProvider>
     </Provider>
   )
 }

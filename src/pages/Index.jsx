@@ -1,20 +1,30 @@
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 function Index() {
-  const posts = Array.from({ length: 10 }, (_, i) => i)
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['repoData'],
+    queryFn: () => axios.get('/posts').then(({ data }) => data.data),
+  })
+
+  if (isLoading) return 'Loading...'
+
+  if (error) return 'An error has occurred: ' + error.message
+
   return (
     <div className='h-full px-2 flex flex-col justify-center items-center py-6'>
-      {posts.map((post) => (
-        <div className='mb-12' key={post}>
+      {data.map((post) => (
+        <div className='mb-12' key={post.id}>
           <div className='flex flex-col md:flex-row w-full lg:w-10/12'>
             <div className='md:mr-4 mb-2 md:mb-0 md:w-4/12 '>
-              <Link className='bg-gray-100' to='/posts/styling-css/'>
+              <Link className='bg-gray-100' to={`/posts/${post.id}`}>
                 <img
                   width='640'
                   height='360'
                   className='rounded mb-3 hover:opacity-70 transition duration-300 ease-in-out'
-                  alt='Styling CSS'
-                  src='https://source.unsplash.com/640x360/?programming'
+                  alt={post.title}
+                  src={post.thumbnail}
                 />
               </Link>
             </div>
@@ -34,29 +44,28 @@ function Index() {
                 </div>
 
                 <div className='text-sm font-medium text-gray-700'>
-                  Dec 29, 2018
+                  {post.publishedAt}
                 </div>
               </div>
 
-              <Link to='/posts/styling-css/' className='hover:text-green-400'>
-                <h2 className='text-2xl font-semibold mb-1'>Styling CSS</h2>
+              <Link to={`/posts/${post.id}`} className='hover:text-gray-500'>
+                <h2 className='text-2xl font-semibold mb-1'>{post.title}</h2>
               </Link>
 
               <p className='text-base font-light text-gray-600 mb-4'>
-                Learn how to use Markdown to write blog posts. Understand
-                front-matter and how it is used in templates.
+                {post.description}
               </p>
 
               <div className='mb-2'>
                 <Link
-                  className='p-1 px-3 mr-1 mb-1 inline-block text-xs font-mono rounded bg-green-200 text-green-800 hover:bg-blue-200 hover:text-blue-800 transition duration-300 ease-in-out'
+                  className='p-1 px-3 mr-1 mb-1 inline-block text-xs font-mono rounded bg-gray-200 text-gray-800 hover:bg-blue-200 hover:text-blue-800 transition duration-300 ease-in-out'
                   to='/categories/development'
                 >
                   Development
                 </Link>
 
                 <Link
-                  className='p-1 px-3 mr-1 mb-1 inline-block text-xs font-mono rounded bg-green-200 text-green-800 hover:bg-blue-200 hover:text-blue-800 transition duration-300 ease-in-out'
+                  className='p-1 px-3 mr-1 mb-1 inline-block text-xs font-mono rounded bg-gray-200 text-gray-800 hover:bg-blue-200 hover:text-blue-800 transition duration-300 ease-in-out'
                   to='/categories/javascript'
                 >
                   Javascript
