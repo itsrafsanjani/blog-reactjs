@@ -12,10 +12,8 @@ import { authActions } from './store/authSlice'
 import Index from './pages/Index'
 import Navbar from './components/Navbar'
 
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import Show from './pages/posts/Show'
 
 const queryClient = new QueryClient()
 
@@ -61,6 +59,7 @@ function App() {
   const routes = (
     <Routes>
       <Route path={'/'} element={<Index />} exact />
+      <Route path={'/posts/:id'} element={<Show />} exact />
 
       <Route path={'/register'} element={<Register />} exact />
       <Route path={'/login'} element={<Login />} exact />
@@ -68,17 +67,17 @@ function App() {
   )
 
   return (
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
         <BrowserRouter>
-          <div className='min-h-screen flex flex-col'>
+          <div className='bg-white min-h-screen flex flex-col'>
             <Navbar />
             <main className='flex-1 flex flex-col'>{routes}</main>
           </div>
           <ToastContainer />
         </BrowserRouter>
-      </QueryClientProvider>
-    </Provider>
+      </Provider>
+    </QueryClientProvider>
   )
 }
 
