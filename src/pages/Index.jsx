@@ -22,7 +22,7 @@ function Index() {
   return (
     <div className='h-full px-2 flex flex-col justify-center items-center py-6'>
       {posts.map((post) => (
-        <div className='mb-12' key={post.id}>
+        <div className='mb-12 w-full' key={post.id}>
           <div className='flex flex-col md:flex-row w-full lg:w-10/12'>
             <div className='md:mr-4 mb-2 md:mb-0 md:w-4/12 '>
               <Link className='bg-gray-100' to={`/posts/${post.id}`}>
@@ -64,23 +64,18 @@ function Index() {
               </Link>
 
               <p className='text-base font-light text-gray-600 mb-4'>
-                {post.description}
+                {post.excerpt}
               </p>
 
               <div className='mb-2'>
-                <Link
-                  className='p-1 px-3 mr-1 mb-1 inline-block text-xs font-mono rounded bg-gray-200 text-gray-800 hover:bg-blue-200 hover:text-blue-800 transition duration-300 ease-in-out'
-                  to='/categories/development'
-                >
-                  Development
-                </Link>
-
-                <Link
-                  className='p-1 px-3 mr-1 mb-1 inline-block text-xs font-mono rounded bg-gray-200 text-gray-800 hover:bg-blue-200 hover:text-blue-800 transition duration-300 ease-in-out'
-                  to='/categories/javascript'
-                >
-                  Javascript
-                </Link>
+                {post.tags.map((tag) => (
+                  <Link key={tag}
+                    className='p-1 px-3 mr-1 mb-1 inline-block text-xs font-mono rounded bg-gray-200 text-gray-800 hover:bg-blue-200 hover:text-blue-800 transition duration-300 ease-in-out'
+                    to={`/tags/${tag}`}
+                  >
+                    {tag}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>

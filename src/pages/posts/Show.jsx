@@ -1,12 +1,16 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import dayjs from 'dayjs'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 function Show() {
   const { id } = useParams()
 
-  const { isLoading, error, data: post } = useQuery({
+  const {
+    isLoading,
+    error,
+    data: post,
+  } = useQuery({
     queryKey: ['post'],
     queryFn: () => axios.get(`/posts/${id}`).then(({ data }) => data.data),
   })
@@ -76,41 +80,35 @@ function Show() {
           </div>
 
           <div className='hidden md:block'>
-            <a
-              className='p-1 px-3 mr-1 mb-1 inline-block text-xs font-mono rounded bg-green-200 text-green-800 hover:bg-blue-200 hover:text-blue-800 transition duration-300 ease-in-out'
-              href='/categories/development'
-            >
-              Development
-            </a>
-
-            <a
-              className='p-1 px-3 mr-1 mb-1 inline-block text-xs font-mono rounded bg-green-200 text-green-800 hover:bg-blue-200 hover:text-blue-800 transition duration-300 ease-in-out'
-              href='/categories/javascript'
-            >
-              Javascript
-            </a>
+            {post.tags.map((tag) => (
+              <Link key={tag}
+                className='p-1 px-3 mr-1 mb-1 inline-block text-xs font-mono rounded bg-gray-200 text-gray-800 hover:bg-blue-200 hover:text-blue-800 transition duration-300 ease-in-out'
+                to={`/tags/${tag}`}
+              >
+                {tag}
+              </Link>
+            ))}
           </div>
         </div>
 
-        <div className='w-full md:w-9/12'>{post.description}</div>
+        <div
+          className='w-full md:w-9/12'
+          dangerouslySetInnerHTML={{ __html: post.description }}
+        ></div>
       </div>
 
       <div className='py-6 mt-6 border-t-2 block md:hidden'>
-        <h3 className='text-sm font-medium mb-1'>Categories</h3>
+        <h3 className='text-sm font-medium mb-1'>Tags</h3>
         <div>
-          <a
-            className='p-1 px-3 mr-1 mb-1 inline-block text-xs font-mono rounded bg-green-200 text-green-800 hover:bg-blue-200 hover:text-blue-800 transition duration-300 ease-in-out'
-            href='/categories/development'
-          >
-            Development
-          </a>
-
-          <a
-            className='p-1 px-3 mr-1 mb-1 inline-block text-xs font-mono rounded bg-green-200 text-green-800 hover:bg-blue-200 hover:text-blue-800 transition duration-300 ease-in-out'
-            href='/categories/javascript'
-          >
-            Javascript
-          </a>
+          {post.tags.map((tag) => (
+            <Link
+              key={tag}
+              className='p-1 px-3 mr-1 mb-1 inline-block text-xs font-mono rounded bg-gray-200 text-gray-800 hover:bg-blue-200 hover:text-blue-800 transition duration-300 ease-in-out'
+              to={`/tags/${tag}`}
+            >
+              {tag}
+            </Link>
+          ))}
         </div>
       </div>
     </div>
